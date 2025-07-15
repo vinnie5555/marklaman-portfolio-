@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevMark Studio</title>
+  <meta name="description" content="A creative portfolio by DevMark Studio, offering web design, development, and digital services.">
+  <meta name="keywords" content="DevMark Studio, web developer, portfolio, HTML, CSS, JavaScript, freelance, design">
+  <meta name="author" content="DevMark Studio">
+  <meta name="robots" content="index, follow">
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0066cc" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #f0f0f0;
+    }
+    a { text-decoration: none; color: inherit; }
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; background-color: #1e1e1e;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .logo {
+      font-size: 1.5rem; font-weight: bold; position: relative; color: #00d1ff;
+    }
+    .logo::before {
+      content: "\26A1";
+      position: absolute; left: -25px; font-size: 26px;
+      color: #ffcc00; animation: spin 2s linear infinite;
+    }
+    .logo::after {
+      content: " \1F680"; font-size: 24px; color: #00ff88;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .menu-icon { display: none; font-size: 1.5rem; cursor: pointer; }
+    .header-links a {
+      margin-left: 1rem; font-weight: 500;
+    }
+    .about-section, .about, .service, .skills, .projects, .testimonials, .contact {
+      padding: 4rem 2rem; background-color: #1a1a1a;
+    }
+    .about-section { padding-top: 5rem; }
+    .intro {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 2rem;
+    }
+    .left-image img {
+      width: 200px; border-radius: 50%; border: 4px solid #555;
+    }
+    .intro p { font-size: 1.2rem; color: #ddd; }
+    .intro span {
+      font-size: 2rem; color: #00bcd4; font-weight: bold;
+    }
+    .bttn a {
+      margin-right: 10px; background-color: #00bcd4;
+      color: white; padding: 0.6rem 1rem; border-radius: 5px; font-weight: 500;
+    }
+    .button button {
+      margin-top: 1rem; padding: 0.6rem 1rem;
+      background: #333; color: #fff;
+      border: none; border-radius: 5px; cursor: pointer;
+    }
+    .about h2, .service h2, .skills h2, .projects h2, .testimonials h2, .contact h2 {
+      text-align: center; font-size: 2rem; color: #00bcd4; margin-bottom: 1rem;
+    }
+    .about .full { text-align: center; font-weight: bold; font-size: 1.2rem; color: #ccc; }
+    .about p, .service p { max-width: 800px; margin: 1rem auto; font-size: 1rem; text-align: center; color: #bbb; }
+    .skills ul {
+      list-style: disc; padding-left: 2rem; color: #ccc;
+    }
+    .projects .project-list {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;
+    }
+    .project-card {
+      background: #222; padding: 1rem; border-radius: 10px;
+      border: 1px solid #444; text-align: center;
+    }
+    .project-card img {
+      width: 100%; border-radius: 10px; margin-bottom: 0.5rem;
+    }
+    .project-card h3 { color: #00bcd4; margin-bottom: 0.5rem; }
+    .project-card p { color: #ccc; font-size: 0.95rem; }
+    .testimonials div {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;
+    }
+    .testimonial-box {
+      background: #222; padding: 1rem; border-radius: 10px;
+      border: 1px solid #444; text-align: center;
+    }
+    .testimonial-box img {
+      width: 60px; height: 60px; border-radius: 50%; margin-bottom: 0.5rem;
+    }
+    .testimonial-box p { color: #ccc; font-style: italic; }
+    .testimonial-box .stars { color: gold; margin: 0.5rem 0; }
+    .testimonial-box .name { color: #00bcd4; font-weight: bold; }
+    .contact form { max-width: 500px; margin: 0 auto; }
+    .contact input, .contact textarea {
+      width: 100%; padding: 0.75rem; margin: 0.5rem 0;
+      background-color: #222; color: #fff; border: 1px solid #444;
+      border-radius: 5px;
+    }
+    .contact button {
+      padding: 0.75rem 1.5rem; background: #00bcd4;
+      border: none; color: white; font-weight: bold; border-radius: 5px; cursor: pointer;
+    }
+    .site-footer {
+      background-color: #1e1e1e; color: white; text-align: center;
+      padding: 2rem 1rem;
+    }
+    .footer-buttons { margin-bottom: 1rem; }
+    .footer-btn { margin: 0 10px; font-weight: 500; }
+    .footer-btn i { margin-right: 5px; }
+    @media (max-width: 768px) {
+      .intro { flex-direction: column; text-align: center; }
+      .menu-icon { display: block; }
+      .header-links {
+        display: none; flex-direction: column;
+        background-color: #222; position: absolute; right: 2rem; top: 60px;
+        padding: 1rem; border-radius: 5px;
+      }
+      .header-links a { margin: 0.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">DevMark Studio</div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <div class="header-links" id="navLinks">
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#services">SERVICES</a>
+      <a href="#skills">SKILLS</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  </div>
+
+  <section id="home" class="about-section">
+    <div class="intro">
+      <div class="left-image">
+        <img src="images/file_000000004ba461f6a26f1581d3ab3f41 (1).png" alt="Mark Laman">
+      </div>
+      <p>Hello, it's me<br><span>Mark Laman</span><br>
+        I build modern, responsive websites for businesses, startups, and individuals.</p>
+      <div class="bttn">
+        <a href="https://wa.me/254103591401" target="_blank">WhatsApp</a>
+        <a href="https://facebook.com/mark.laman" target="_blank">Facebook</a>
+        <a href="https://instagram.com/MarK_Laman" target="_blank">Instagram</a>
+        <div class="button">
+          <button onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">More About Me</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p class="full">Full Stack Developer</p>
+    <p>I specialize in beautiful, functional websites. From portfolios to full e-commerce stores with M-PESA & card payments – I help bring ideas to life.</p>
+  </section>
+
+  <section id="services" class="service">
+    <h2>My Services</h2>
+    <h3>Website Design & Development</h3>
+    <p>Responsive sites using HTML, CSS, and JavaScript.</p>
+    <h3>UI/UX Design</h3>
+    <p>User-friendly interfaces that are visually appealing.</p>
+    <h3>Backend Development</h3>
+    <p>Secure and scalable systems with Node.js and Python.</p>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>My Skills</h2>
+    <h3>Technical Skills</h3>
+    <ul>
+      <li>HTML & CSS</li>
+      <li>JavaScript</li>
+      <li>React</li>
+      <li>Node.js</li>
+      <li>Python</li>
+    </ul>
+    <h3>Professional Skills</h3>
+    <ul>
+      <li>Effective communication</li>
+      <li>Project management</li>
+      <li>Team collaboration</li>
+      <li>Problem-solving</li>
+      <li>Client support</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="project-list">
+      <div class="project-card">
+        <img src="images/chai.png" alt="TeaFarm Dashboard">
+        <h3>TeaFarm Dashboard</h3>
+        <p>Offline-first system for tea farm data collection and analysis.</p>
+      </div>
+      <div class="project-card">
+        <img src="images/file_00000000d87461fd969f38f7e2713bb1.png" alt="Wi-Fi Voucher App">
+        <h3>Wi-Fi Voucher App</h3>
+        <p>Voucher system with M-PESA integration and Node.js backend.</p>
+      </div>
+      <div class="project-card">
+        <img src="images/Screenshot_31-5-2025_18383_.jpeg" alt="Football Club Website">
+        <h3>Football Club Website</h3>
+        <p>Club site with match videos, player profiles & admin features.</p>
+      </div>
+      <div class="project-card">
+        <img src="images/Screenshot_15-7-2025_92714_.jpeg" alt="E-commerce Website">
+        <h3>Mercurius Shop</h3>
+        <p>Modern e-commerce website built for Mercurius using HTML, CSS, and Firebase backend.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Clients Say</h2>
+    <div>
+      <div class="testimonial-box">
+        <img src="images/15-512.webp" alt="Client">
+        <p>"Mark delivered my website fast and perfectly! 100% recommend."</p>
+        <div class="stars">★★★★★</div>
+        <p class="name">— James K.</p>
+      </div>
+      <div class="testimonial-box">
+        <img src="images/6-512.webp" alt="Client">
+        <p>"Great design skills and excellent communication throughout."</p>
+        <div class="stars">★★★★★</div>
+        <p class="name">— Sarah M.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <p>Have a project or want to collaborate? Let's talk.</p>
+    <form action="https://formsubmit.co/vincentkamau179@gmail.com" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-buttons">
+      <a href="https://wa.me/254103591401" target="_blank" class="footer-btn"><i class="fab fa-whatsapp"></i>Whatsapp</a>
+      <a href="https://facebook.com/mark.laman" target="_blank" class="footer-btn"><i class="fab fa-facebook-f"></i>Facebook</a>
+      <a href="https://instagram.com/MarK_Laman" target="_blank" class="footer-btn"><i class="fab fa-instagram"></i>Instagram</a>
+    </div>
+    <p>&copy; 2025 DevMark Studio. All rights reserved.</p>
+  </footer>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log("✅ Service Worker Registered"))
+        .catch((error) => console.log("❌ SW registration failed:", error));
+    }
+    function toggleMenu() {
+      const x = document.getElementById("navLinks");
+      x.style.display = x.style.display === "block" ? "none" : "block";
+    }
+    document.querySelectorAll('.header-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) toggleMenu();
+      });
+    });
+  </script>
+</body>
+</html>
